@@ -4,7 +4,7 @@ import os
 
 @pytest.fixture
 def soup():
-    path = 'src/index.html'
+    path = 'index.html'
     assert os.path.exists(path), "src/index.html não encontrado"
     with open(path, 'r', encoding='utf-8') as f:
         return BeautifulSoup(f, 'html.parser')

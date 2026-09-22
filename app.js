@@ -12,8 +12,8 @@
  * - Sistema de notificações Toast em tempo real e alternância de tema Dark/Light.
  */
 
-document.addEventListener('alpine:init', () => {
-    Alpine.data('appStore', () => ({
+function appStore() {
+    return {
         darkMode: false,
         searchQuery: '',
         activeCategory: 'all',
@@ -436,5 +436,13 @@ document.addEventListener('alpine:init', () => {
                 localStorage.removeItem('fogo_brasa_cart');
             } catch (e) {}
         }
-    }));
+    };
+}
+
+// Exposto no escopo global: o x-data="appStore()" do index.html resolve por
+// aqui mesmo que o registro via alpine:init nao chegue a tempo.
+window.appStore = appStore;
+
+document.addEventListener('alpine:init', () => {
+    Alpine.data('appStore', appStore);
 });

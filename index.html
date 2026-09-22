@@ -40,10 +40,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lógica da Aplicação (antes do Alpine, para registrar appStore a tempo) -->
+    <script defer src="app.js"></script>
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Lógica da Aplicação -->
-    <script src="app.js"></script>
+
+    <!-- Aviso caso o app.js nao seja carregado pelo servidor: sem isso a pagina
+         fica em branco (cardapio e carrinho somem) sem nenhuma explicacao. -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                if (typeof window.appStore === 'function') return;
+                var aviso = document.createElement('div');
+                aviso.setAttribute('role', 'alert');
+                aviso.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#b91c1c;color:#fff;padding:14px 16px;text-align:center;font:14px/1.5 system-ui,-apple-system,sans-serif';
+                aviso.innerHTML = '<strong>O cardapio nao carregou.</strong> O arquivo <code>app.js</code> nao foi encontrado pelo servidor. Ele precisa estar publicado na mesma pasta do <code>index.html</code>.';
+                document.body.appendChild(aviso);
+            }, 1500);
+        });
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-dark-950 dark:text-slate-100 font-sans antialiased transition-colors duration-300 min-h-screen flex flex-col justify-between"
       x-data="appStore()">
