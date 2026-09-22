@@ -117,14 +117,6 @@ function appStore() {
                 price: 8.50,
                 description: 'Refrescante chá mate artesanal batido com limão.',
                 image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                id: 11,
-                name: 'Cerveja IPA Artesanal (Long Neck)',
-                category: 'bebidas',
-                price: 15.90,
-                description: 'Cerveja artesanal com notas cítricas e amargor equilibrado.',
-                image: 'https://images.unsplash.com/photo-1608270184922-1b6e41b9f7df?auto=format&fit=crop&w=800&q=80'
             }
         ],
         sobremesas: [
