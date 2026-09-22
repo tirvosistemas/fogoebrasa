@@ -191,6 +191,18 @@ function appStore() {
                 console.error('Erro ao carregar dados do localStorage:', e);
             }
 
+            // Descarta do carrinho salvo os itens que sairam do cardapio, senao
+            // um produto removido continua no carrinho de quem ja o adicionou.
+            const idsDoCardapio = new Set(
+                [...this.burgers, ...this.acompanhamentos, ...this.bebidas, ...this.sobremesas]
+                    .map(p => p.id)
+            );
+            if (Array.isArray(this.cart)) {
+                this.cart = this.cart.filter(item => idsDoCardapio.has(item.id));
+            } else {
+                this.cart = [];
+            }
+
             // Inicializar filtros do cardápio
             this.filterMenu();
 

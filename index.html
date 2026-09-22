@@ -47,7 +47,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Lógica da Aplicação (antes do Alpine, para registrar appStore a tempo) -->
-    <script defer src="app.js"></script>
+    <!-- ?v= e a versao do arquivo: mudar esse numero a cada alteracao do
+         app.js obriga o navegador a baixar a versao nova em vez de usar a
+         copia guardada em cache. -->
+    <script defer src="app.js?v=2"></script>
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
